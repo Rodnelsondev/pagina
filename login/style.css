@@ -1,0 +1,231 @@
+/*
+  Esse seletor remove o cálculo padrão de borda para que o layout
+  fique mais previsível e os elementos não "estouram" as larguras definidas.
+*/
+* {
+  box-sizing: border-box;
+}
+
+/*
+  A página inteira é centralizada na tela com um fundo escuro e gradiente.
+  Isso cria o contraste necessário para que o efeito glass tenha destaque.
+*/
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at top, #14253d 0%, #07111f 45%, #040b14 100%);
+  font-family: Arial, sans-serif;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/*
+  O fundo com orbes suaves ajuda a dar profundidade.
+  Essas bolhas em blur deixam o ambiente mais bonito e reforçam o efeito vidro.
+*/
+/*
+  Essas bolhas fazem o fundo parecer vivo.
+  O blur deixa a luz mais suave, e a animação faz a bolha "crescer" e "encolher".
+  Isso cria uma sensação de movimento sem deixar o visual poluído.
+*/
+.background-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  z-index: 0;
+  animation: bubblePulse 10s ease-in-out infinite alternate;
+}
+
+/*
+  A animação bubblePulse muda a escala da bolha e sua transparência.
+  Isso cria o efeito de uma bolha grande aparecendo e depois diminuindo.
+*/
+@keyframes bubblePulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.35;
+  }
+}
+
+/*
+  Os dois blocos abaixo definem o tamanho e a posição das bolhas.
+  Cada uma recebe uma cor e um lugar diferente para criar profundidade no fundo.
+*/
+.orb-one {
+  width: 280px;
+  height: 280px;
+  background: rgba(114, 225, 255, 0.2);
+  top: 40px;
+  left: 80px;
+}
+
+.orb-two {
+  width: 320px;
+  height: 320px;
+  background: rgba(93, 139, 255, 0.25);
+  right: 80px;
+  bottom: 30px;
+  animation-delay: 1.2s;
+}
+
+/*
+  Este bloco é o coração do efeito glass.
+  Ele usa fundo semi-transparente, borda leve, blur e sombra para simular vidro.
+*/
+/*
+  Esse é o card principal do login.
+  O efeito glassmorphism aparece porque o bloco tem:
+  - fundo semi-transparente
+  - borda fina
+  - desfoque do fundo
+  - sombra suave
+  - bordas arredondadas
+*/
+.login-glss-card {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 90vw);
+  padding: 32px 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 22px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+}
+
+/*
+  A marca do topo deixa a interface mais organizada.
+  O display flex alinha o ícone com o texto e mantém tudo em linha.
+*/
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #72e1ff, #5d8bff);
+  color: #07111f;
+}
+
+/*
+  O título principal recebe um destaque maior para chamar a atenção.
+  A margem negativa ajuda a manter visualmente alinhado com os campos abaixo.
+*/
+h1 {
+  margin: 0 0 18px;
+  font-size: 2rem;
+}
+
+/*
+  Os formulários são organizados em coluna para repetir o padrão
+  de label -> input -> botão de forma legível e consistente.
+*/
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-form h2 {
+  margin: 0 0 8px;
+}
+
+label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/*
+  Os campos de entrada recebem transparência e borda suave para combinar
+  com o efeito vidro, porém continuam legíveis para o usuário.
+*/
+.login-glss-card input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: white;
+  outline: none;
+}
+
+.login-glss-card input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.login-glss-card input:focus {
+  border-color: rgba(114, 225, 255, 0.7);
+  box-shadow: 0 0 0 2px rgba(114, 225, 255, 0.12);
+}
+
+/*
+  O botão principal usa degradê para dar contraste e chamar atenção.
+  O hover cria um leve movimento de elevação para melhorar a sensação interativa.
+*/
+.login-glss-card button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #72e1ff, #5d8bff);
+  color: #07111f;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.login-glss-card button:hover {
+  transform: translateY(-1px);
+}
+
+/*
+  Os botões de alternância entre login e cadastro ficam com visual discreto,
+  para não competir com o botão principal e manter a hierarquia visual.
+*/
+.auth-switch {
+  margin-top: 18px;
+}
+
+#switchToRegister,
+#switchToLogin {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/*
+  A classe hidden é usada para esconder elementos temporariamente,
+  como o formulário de cadastro ou o botão de retorno ao login.
+*/
+.hidden {
+  display: none;
+}
+
