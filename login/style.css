@@ -21,7 +21,6 @@ body {
   position: relative;
   overflow: hidden;
 }
-
 /*
   O fundo com orbes suaves ajuda a dar profundidade.
   Essas bolhas em blur deixam o ambiente mais bonito e reforçam o efeito vidro.
@@ -96,19 +95,19 @@ body {
 .login-glss-card {
   position: relative;
   z-index: 1;
-  width: min(420px, 90vw);
+  width: min(820px, 92vw);
   padding: 32px 28px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 22px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+  border-radius: 24px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
 }
 
 /*
-  A marca do topo deixa a interface mais organizada.
-  O display flex alinha o ícone com o texto e mantém tudo em linha.
+  A marca do topo ajuda a dar identidade visual ao projeto.
+  Ela fica em linha com o nome do sistema e reforça a sensação de painel moderno.
 */
 .brand {
   display: flex;
@@ -117,39 +116,63 @@ body {
   margin-bottom: 18px;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 .brand-mark {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   display: grid;
   place-items: center;
   border-radius: 12px;
   background: linear-gradient(135deg, #72e1ff, #5d8bff);
   color: #07111f;
+  font-weight: 800;
 }
 
 /*
-  O título principal recebe um destaque maior para chamar a atenção.
-  A margem negativa ajuda a manter visualmente alinhado com os campos abaixo.
+  O título principal continua chamativo, mas agora o card é maior,
+  então a fonte fica mais elegante e bem distribuída visualmente.
 */
 h1 {
-  margin: 0 0 18px;
-  font-size: 2rem;
+  margin: 0 0 20px;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: #f3f7ff;
 }
 
 /*
-  Os formulários são organizados em coluna para repetir o padrão
-  de label -> input -> botão de forma legível e consistente.
+  Cada seção do cadastro recebe um bloco interno com transparência e borda suave.
+  Isso ajuda a separar as áreas de habilitação, perfil e contato sem quebrar o efeito glass.
 */
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.form-section {
+  padding: 18px 18px 10px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(10, 15, 25, 0.12);
 }
 
-.auth-form h2 {
-  margin: 0 0 8px;
+.form-section h2 {
+  margin: 0 0 16px;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/*
+  O layout em duas colunas deixa os campos organizados e responsivos.
+  Em telas pequenas, eles quebram em uma coluna para não ficarem apertados.
+*/
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 label {
@@ -158,18 +181,18 @@ label {
 }
 
 /*
-  Os campos de entrada recebem transparência e borda suave para combinar
-  com o efeito vidro, porém continuam legíveis para o usuário.
+  Os inputs recebem fundo levemente transparente e bordas iluminadas.
+  Essa combinação reforça o visual frosted glass e ainda preserva legibilidade.
 */
 .login-glss-card input {
   width: 100%;
   padding: 12px 14px;
-  margin-bottom: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
-  color: white;
+  color: #ffffff;
   outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .login-glss-card input::placeholder {
@@ -177,53 +200,55 @@ label {
 }
 
 .login-glss-card input:focus {
-  border-color: rgba(114, 225, 255, 0.7);
-  box-shadow: 0 0 0 2px rgba(114, 225, 255, 0.12);
-}
-
-/*
-  O botão principal usa degradê para dar contraste e chamar atenção.
-  O hover cria um leve movimento de elevação para melhorar a sensação interativa.
-*/
-.login-glss-card button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #72e1ff, #5d8bff);
-  color: #07111f;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.login-glss-card button:hover {
+  border-color: rgba(114, 225, 255, 0.75);
+  box-shadow: 0 0 0 3px rgba(114, 225, 255, 0.12);
   transform: translateY(-1px);
 }
 
 /*
-  Os botões de alternância entre login e cadastro ficam com visual discreto,
-  para não competir com o botão principal e manter a hierarquia visual.
+  O botão final de cadastro tem destaque maior e usa degradê suave.
+  Está separado das seções para indicar a conclusão do processo.
 */
-.auth-switch {
-  margin-top: 18px;
+.submit-btn {
+  width: 100%;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #72e1ff, #5d8bff);
+  color: #07111f;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 30px rgba(93, 139, 255, 0.35);
 }
 
-#switchToRegister,
-#switchToLogin {
-  width: 100%;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
-  padding: 10px;
-  cursor: pointer;
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(93, 139, 255, 0.42);
 }
 
 /*
-  A classe hidden é usada para esconder elementos temporariamente,
-  como o formulário de cadastro ou o botão de retorno ao login.
+  Em mobile, o layout precisa se adaptar com uma única coluna.
+  Isso garante que os campos fiquem legíveis e sem empurrar o card lateralmente.
+*/
+@media (max-width: 640px) {
+  .login-glss-card {
+    padding: 22px 18px;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-section {
+    padding: 14px 14px 8px;
+  }
+}
+
+/*
+  A classe hidden continua disponível para o caso de algum elemento ser ocultado.
+  No momento, ela pode ser usada em futuras trocas entre login e cadastro.
 */
 .hidden {
   display: none;

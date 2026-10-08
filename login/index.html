@@ -2,9 +2,8 @@
 <html lang="pt-br">
   <head>
     <!--
-      O head contém informações gerais da página,
-      como o conjunto de caracteres, a responsividade e o link para o CSS.
-      Ele não aparece visualmente, mas define como o navegador vai interpretar a página.
+      O head define o conjunto de caracteres, a responsividade e o link com o CSS.
+      Essa parte não aparece na tela, mas orienta o navegador sobre o conteúdo da página.
     -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,20 +13,20 @@
 
   <body>
     <!--
-      Essas duas divs ficam no fundo e criam o efeito de bolhas suaves.
-      Elas ajudam a dar profundidade ao fundo e deixam a página mais bonita.
+      Esses elementos ficam no fundo para criar as bolhas suaves.
+      Elas ajudam a formar o efeito de profundidade e deixam a tela mais moderna.
     -->
     <div class="background-orb orb-one"></div>
     <div class="background-orb orb-two"></div>
 
     <!--
-      Este é o container principal do formulário.
-      É o bloco que recebe o efeito glassmorphism.
+      Este é o card principal.
+      Ele recebe o efeito glassmorphism e guarda todos os formulários do cadastro.
     -->
     <main class="login-glss-card">
       <!--
-        Essa área mostra a marca da página.
-        O ícone e o nome ficam juntos para criar uma identidade visual.
+        A marca fica no topo do card.
+        Isso ajuda a dar identidade visual ao projeto e deixa a página mais profissional.
       -->
       <div class="brand">
         <span class="brand-mark">R</span>
@@ -35,51 +34,113 @@
       </div>
 
       <!--
-        Título principal da tela.
-        Ele mostra a mensagem inicial para o usuário entrar no sistema.
+        Título inicial da tela.
+        Ele mostra ao usuário que ele está criando ou acessando a conta.
       -->
-      <h1>Bem-vindo</h1>
+      <h1>Criar conta</h1>
 
       <!--
-        Formulário de login.
-        Aqui ficam os campos de email e senha para o usuário entrar.
+        A primeira seção é sobre credenciais.
+        Aqui ficam os dados essenciais para o usuário conseguir logar depois.
       -->
-      <form id="login-panel" class="auth-form">
-        <h2>Login</h2>
+      <section class="form-section">
+        <h2>1. Credenciais</h2>
 
-        <label for="loginEmail">Email</label>
-        <input type="email" id="loginEmail" placeholder="seu@email.com" required />
+        <div class="field-row">
+          <div class="field">
+            <label for="emailCadastro">E-mail</label>
+            <input type="email" id="emailCadastro" placeholder="seu@email.com" />
+          </div>
 
-        <label for="loginPassword">Senha</label>
-        <input type="password" id="loginPassword" placeholder="Sua senha" required />
+          <div class="field">
+            <label for="username">Nome de usuário</label>
+            <input type="text" id="username" placeholder="seu_usuario" />
+          </div>
+        </div>
 
-        <button type="submit">Entrar</button>
-      </form>
+        <div class="field-row">
+          <div class="field">
+            <label for="senhaCadastro">Senha</label>
+            <input type="password" id="senhaCadastro" placeholder="Crie uma senha" />
+          </div>
+
+          <div class="field">
+            <label for="confirmarSenha">Confirmar senha</label>
+            <input type="password" id="confirmarSenha" placeholder="Repita a senha" />
+          </div>
+        </div>
+      </section>
 
       <!--
-        Formulário de cadastro.
-        Esse bloco fica escondido inicialmente e aparece quando o usuário quer criar uma conta.
+        A segunda seção é sobre perfil pessoal.
+        Esses dados ajudam a montar o perfil do usuário e simulam informações reais.
+        O campo de CPF está marcado como fictício para estudo.
       -->
-      <form id="registerForm" class="auth-form hidden">
-        <h2>Cadastro</h2>
+      <section class="form-section">
+        <h2>2. Perfil e identificação</h2>
 
-        <label for="registerEmail">Email</label>
-        <input type="email" id="registerEmail" placeholder="seu@email.com" required />
+        <div class="field-row">
+          <div class="field">
+            <label for="nomeCompleto">Nome completo</label>
+            <input type="text" id="nomeCompleto" placeholder="Seu nome completo" />
+          </div>
 
-        <label for="registerPassword">Senha</label>
-        <input type="password" id="registerPassword" placeholder="Crie uma senha" required />
+          <div class="field">
+            <label for="documento">CPF / Documento (fictício para estudo)</label>
+            <input type="text" id="documento" placeholder="000.000.000-00" />
+          </div>
+        </div>
 
-        <button type="submit">Cadastrar</button>
-      </form>
+        <div class="field-row">
+          <div class="field">
+            <label for="nascimento">Data de nascimento</label>
+            <input type="date" id="nascimento" />
+          </div>
+
+          <div class="field">
+            <label for="cargo">Cargo</label>
+            <input type="text" id="cargo" placeholder="Ex: Analista" />
+          </div>
+        </div>
+      </section>
 
       <!--
-        Esses botões alternam entre as telas de login e cadastro.
-        Um mostra a opção de cadastro e o outro volta para login.
+        A terceira seção trata de contato e localização.
+        Isso é útil para simular cadastro de usuário real ou organização.
       -->
-      <div class="auth-switch">
-        <button id="switchToRegister" type="button">Não tem conta? Cadastre-se</button>
-        <button id="switchToLogin" type="button" class="hidden">Já tem conta? Faça login</button>
-      </div>
+      <section class="form-section">
+        <h2>3. Contato e localização</h2>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" placeholder="(11) 99999-9999" />
+          </div>
+
+          <div class="field">
+            <label for="pais">País</label>
+            <input type="text" id="pais" placeholder="Brasil" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="cidade">Cidade</label>
+            <input type="text" id="cidade" placeholder="São Paulo" />
+          </div>
+
+          <div class="field">
+            <label for="endereco">Endereço</label>
+            <input type="text" id="endereco" placeholder="Rua, número, bairro" />
+          </div>
+        </div>
+      </section>
+
+      <!--
+        Aqui o botão finaliza o cadastro.
+        No futuro, esse botão pode disparar validações e salvar no banco ou no localStorage.
+      -->
+      <button type="submit" class="submit-btn">Cadastrar</button>
     </main>
   </body>
 </html>
